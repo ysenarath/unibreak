@@ -19,6 +19,13 @@ fn word_indices(text: &str) -> Vec<usize> {
     text.split_word_bound_indices().map(|(i, _)| i).collect()
 }
 
+#[pyfunction]
+fn split_word_bound_indices(text: &str) -> Vec<(usize, String)> {
+    text.split_word_bound_indices()
+        .map(|(i, s)| (i, s.to_string()))
+        .collect()
+}
+
 /// Get grapheme cluster boundary indices in text
 #[pyfunction]
 fn grapheme_indices(text: &str) -> Vec<usize> {
@@ -49,5 +56,6 @@ fn unibreak(_py: Python<'_>, m: &PyModule) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(grapheme_indices, m)?)?;
     m.add_function(wrap_pyfunction!(grapheme_len, m)?)?;
     m.add_function(wrap_pyfunction!(is_word_boundary, m)?)?;
+    m.add_function(wrap_pyfunction!(split_word_bound_indices, m)?)?;
     Ok(())
 }
