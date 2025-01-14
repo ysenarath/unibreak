@@ -1,6 +1,6 @@
 """A Python module implemented in Rust for Unicode text segmentation"""
 
-from typing import List
+from typing import List, Tuple
 
 def split_words(text: str) -> List[str]:
     """Split text into words using Unicode word boundaries"""
@@ -24,4 +24,8 @@ def grapheme_len(text: str) -> int:
 
 def is_word_boundary(text: str, index: int) -> bool:
     """Check if index is at a word boundary"""
+    ...
+
+def split_word_bound_indices(text: str) -> List[Tuple[int, int]]:
+    """Split text into word boundaries"""
     ...
